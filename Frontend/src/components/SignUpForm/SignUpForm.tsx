@@ -57,6 +57,7 @@ const SignUpForm = () => {
       // We'll get to this shortly!
       navigate('/');
     } catch (err: any) {
+      // console.error("Unable to Signup:", err.message);
       setMessage(err.message);
     }
   };
