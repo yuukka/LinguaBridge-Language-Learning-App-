@@ -30,11 +30,8 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
 const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+  { name: 'Game', description: 'Play Language game', href: '/', icon: ChartPieIcon },
+  { name: 'Library', description: 'Your Japanese-English library', href: '/library', icon: CursorArrowRaysIcon },
 ]
 
 const callsToAction = [
@@ -86,9 +83,9 @@ const Menu = () => {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          {/* <Popover className="relative">
+          <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
-              Product
+              Features
               <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
             </PopoverButton>
 
@@ -115,7 +112,7 @@ const Menu = () => {
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+              {/* <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                 {callsToAction.map((item) => (
                   <a
                     key={item.name}
@@ -126,13 +123,13 @@ const Menu = () => {
                     {item.name}
                   </a>
                 ))}
-              </div>
+              </div> */}
             </PopoverPanel>
-          </Popover> */}
+          </Popover>
 
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          {/* <a href="#" className="text-sm/6 font-semibold text-gray-900">
             Features
-          </a>
+          </a> */}
           {/* <a href="#" className="text-sm/6 font-semibold text-gray-900">
             Marketplace
           </a> */}
@@ -181,7 +178,7 @@ const Menu = () => {
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-open:rotate-180" />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products, ...callsToAction].map((item) => (
+                    {[...products].map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"
@@ -193,12 +190,6 @@ const Menu = () => {
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Features
-                </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"

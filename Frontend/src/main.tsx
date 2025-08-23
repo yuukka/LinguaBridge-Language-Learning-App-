@@ -6,12 +6,15 @@ import App from './App.tsx'
 
 // Import the UserProvider component
 import { UserProvider } from './contexts/UserContext.tsx';
+import { SearchResultProvider } from './contexts/WordResult.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <SearchResultProvider>
+          <App />
+        </SearchResultProvider>
       </UserProvider>
     </BrowserRouter>
   </StrictMode>,

@@ -10,8 +10,9 @@ import SignInForm from './components/SignInForm/SignInForm';
 import background from "./assets/background.jpeg"
 import ErrorPage from "./components/ErrorPage"
 import MainPage from "./components/MainPage/MainPage"
-
+import SearchBar from "./components/SearchBar/SearchBar"
 import { useUser } from './contexts/UserContext';
+import FavCard from './components/favCard/favCard';
 
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
   return (
     <>
     <div
-      className="min-h-screen bg-cover bg-center z-1"
+      className="min-h-screen bg-cover bg-center bg-fixed z-0"
        style={{ backgroundImage: `url(${background})` }}
     >
       <Menu/>
@@ -29,6 +30,8 @@ const App = () => {
         <Route path='/signup' element={<SignUpForm/>}></Route>
         <Route path='/login' element={<SignInForm/>}></Route>
         <Route path='/error' element={<ErrorPage/>}></Route>
+        <Route path='/library' element={<SearchBar/>}></Route>
+        <Route path='/library/fav' element={<FavCard/>}></Route>
       </Routes>
     </div>
     </>

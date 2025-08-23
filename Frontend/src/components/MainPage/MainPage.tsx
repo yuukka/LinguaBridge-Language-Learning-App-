@@ -58,12 +58,15 @@ const callsToAction = [
   { name: 'Contact sales', href: '#', icon: PhoneIcon },
 ]
 
+
+
 const MainPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const navigate = useNavigate();
 
   return (
     <h1>Hello</h1>
+
   );
 };
 
