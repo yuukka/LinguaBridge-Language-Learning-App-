@@ -31,7 +31,7 @@ const App = () => {
         <Route path='/login' element={<SignInForm/>}></Route>
         <Route path='/error' element={<ErrorPage/>}></Route>
         <Route path='/library' element={<SearchBar/>}></Route>
-        <Route path='/library/fav' element={<FavCard/>}></Route>
+        <Route path='/library/fav' element={user ? <FavCard /> : <Landing /> }></Route>
       </Routes>
     </div>
     </>

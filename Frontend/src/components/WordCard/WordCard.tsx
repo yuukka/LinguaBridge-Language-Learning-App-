@@ -18,7 +18,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-import { UserContext } from '../../contexts/UserContext';
+import { UserContext, useUser } from '../../contexts/UserContext';
 import { index } from '../../services/userService';
 
 import { saveWord } from '../../services/wordService';
@@ -28,6 +28,8 @@ const WordCard = () => {
   const [gifResults, setGifResults] = useState([]);
   const [message, setMessage] = useState('');
   const [savedWords, setSavedWords] = useState({});
+
+  const { user } = useUser();
 
   useEffect(() => {
     const fetchGifs = async () => {
@@ -108,14 +110,16 @@ const WordCard = () => {
                         </CardContent>
                         <CardFooter className="flex-col">
                             <div className='text-red-500/100'>{message}</div>
-                            <Button 
+                            {user ? <Button 
                             id='addFav'
                             type="submit" 
                             className="w-full" 
                             onClick={(e) => addFavFunction(e, result)}
                             disabled={!!savedWords[result.reading.kana]}>
                             Save
-                            </Button>
+                            </Button> :
+                            <div></div>}
+                            
                         </CardFooter>
                     </div>
 
