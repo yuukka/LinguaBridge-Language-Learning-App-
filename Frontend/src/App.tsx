@@ -13,7 +13,7 @@ import MainPage from "./components/MainPage/MainPage"
 import SearchBar from "./components/SearchBar/SearchBar"
 import { useUser } from './contexts/UserContext';
 import FavCard from './components/favCard/favCard';
-
+import QuickQuiz from './components/QuickQuiz/QuickQuiz';
 
 const App = () => {
   const { user } = useUser();
@@ -32,6 +32,7 @@ const App = () => {
         <Route path='/error' element={<ErrorPage/>}></Route>
         <Route path='/library' element={<SearchBar/>}></Route>
         <Route path='/library/fav' element={user ? <FavCard /> : <Landing /> }></Route>
+        <Route path='/quiz/random' element={<QuickQuiz />}></Route>
       </Routes>
     </div>
     </>
