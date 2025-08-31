@@ -1,10 +1,14 @@
 // src/contexts/UserContext.tsx
 
 import { createContext, useContext, useState, ReactNode } from 'react';
+const BACKEND_BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
 
 interface User {
   id: string;
   username: string;
+  level?: number;
+  fullname?: string;
+  bio?: string;
 }
 
 interface DecodedToken {
@@ -26,7 +30,10 @@ const getUserFromToken = (): User | null => {
 
   // return JSON.parse(atob(token.split('.')[1])).payload;
   const decoded = JSON.parse(atob(token.split('.')[1])) as DecodedToken;
-  return decoded.payload;
+  return {
+    ...decoded.payload,
+    level: decoded.payload.level || 1,   
+  };
 };
 
 const useUser = (): UserContextType => {
@@ -41,10 +48,61 @@ const useUser = (): UserContextType => {
 function UserProvider({ children }: { children: ReactNode }) {
   // call getUserFromToken() to get our initial user state
   const [user, setUser] = useState<User | null>(getUserFromToken());
+  const token = localStorage.getItem('token');
 
+  const updateUserLevel = async (newLevel: number) => {
+    console.log(user)
+    console.log(token)
+    console.log({ level: newLevel })
+    if (!user) return; // safety check
+
+    try {
+      await fetch(`${BACKEND_BASE_URL}/users/${user._id}/level`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ level: newLevel }),
+      });
+
+      // Update context immediately
+      setUser(prev => prev ? { ...prev, level: newLevel } : null);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+   interface Profile {
+        fullname: string;
+        bio: string;
+  }
+
+  const updateUserProfile = async ( profile: Profile) => {
+    console.log(user)
+    console.log(token)
+    console.log(profile)
+    if (!user) return; // safety check
+
+    try {
+      await fetch(`${BACKEND_BASE_URL}/users/${user._id}/profile/update`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify( profile ),
+      });
+
+      // Update context immediately
+      setUser(prev => prev ? { ...prev, profile } : null);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
   // This is the user state and the setUser function that will update it!
   // This variable name isn't special; it's just convention to use `value`.
-  const value = { user, setUser };
+  const value = { user, setUser, updateUserLevel, updateUserProfile };
 
   return (
     <UserContext.Provider value={value}>

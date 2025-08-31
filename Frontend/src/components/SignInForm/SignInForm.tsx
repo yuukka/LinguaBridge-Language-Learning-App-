@@ -117,7 +117,7 @@ const SignInForm = () => {
                     <CardFooter className="flex-col gap-2">
                     <Button 
                     type="submit" 
-                    className="w-full bg-neutral-700"
+                    className="w-full bg-neutral-700 rounded-full"
                     disabled={isFormInvalid()}>
                         Login
                     </Button>
