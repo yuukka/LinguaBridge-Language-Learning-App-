@@ -55,7 +55,7 @@ const SignUpForm = () => {
       setUser(newUser);
       // Take the user to the (non-existent) home page after they sign up.
       // We'll get to this shortly!
-      navigate('/');
+      navigate('/profile/create');
     } catch (err: any) {
       // console.error("Unable to Signup:", err.message);
       setMessage(err.message);
@@ -142,7 +142,7 @@ const SignUpForm = () => {
                     disabled={isFormInvalid()}>
                       Sign Up
                     </Button>
-                    <Button variant="outline" className="w-full">
+                    <Button variant="outline" className="w-full rounded-full">
                       Sign Up with Google
                     </Button>
                   </CardFooter>

@@ -45,7 +45,7 @@ const Menu = () => {
   const products = [
     { name: 'Game', description: 'Play Language game', href: '/quiz/random', icon: ChartPieIcon, children: [
         { name: 'Quick Quiz', href: '/quiz/random' },
-        ...(user ? [{ name: 'Challenge Mode', href: '/quiz/challenge' }] : []),
+        ...(user ? [{ name: 'Quest', href: '/quiz/quest' }] : []),
         ...(user ? [{ name: 'Your Badges', href: '/quiz/bedges' }] : []),
       ] },
     { name: 'Library', description: 'Your Japanese-English library', href: '/library', icon: CursorArrowRaysIcon },
@@ -140,10 +140,14 @@ const Menu = () => {
   </div>
 </PopoverPanel>
           </Popover>
-
+          
           <a href="#" className="text-sm/6 font-semibold text-gray-900">
             About linguaBridge
           </a>
+
+          {user ? (<a href="/profile" className="text-sm/6 font-semibold text-gray-900">
+            Profile
+          </a>): null}
         </PopoverGroup>
         {user ? (<div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a className="text-sm/6 font-semibold text-gray-900" onClick={handleSignOut} >
@@ -229,8 +233,14 @@ const Menu = () => {
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
-                  Company
+                  About linguaBridge
                 </a>
+              {user ? (<a
+                  href="/profile"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                >
+                  Profile
+                </a>): null}
               </div>
               {user ?
                   <a

@@ -28,6 +28,35 @@ const getQuickQuiz = async (requestType) => {
 
 };
 
+const getQuest = async (requestType, level) => {
+    const token = localStorage.getItem('token');
+
+    console.log(token);
+    
+    try {
+        const response = await fetch(`${BACKEND_BASE_URL}/random?level=${level}`, {
+        method: requestType,
+        headers: {
+            "Content-Type": "application/json"
+        }
+        
+        });
+        
+        if (!response.ok) {
+         throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        
+        return json;
+    } catch (error) {
+        console.error(error.message);
+        throw error;
+    }
+
+};
+
 export { 
     getQuickQuiz,
+    getQuest,
 };

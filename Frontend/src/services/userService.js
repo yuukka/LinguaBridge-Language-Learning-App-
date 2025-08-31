@@ -29,9 +29,40 @@ const index = async () => {
   }
 };
 
+const userProfile = async (userId) => {
+  const token = localStorage.getItem('token');
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}`, {
+      method: 'GET',
+      headers: { 
+        'Content-Type': 'application/json', 
+        'Authorization': `Bearer ${localStorage.getItem('token')}` 
+      },
+    //   headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${Token}` },
+      // body: JSON.stringify(profile),
+    });
+
+    const data = await res.json();
+
+    if (data.err) {
+      throw new Error(data.err);
+    }
+
+    if (data) {
+      return data;
+    }
+
+    throw new Error('Invalid response from server');
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+};
+
 
 
 export {
-  index
+  index,
+  userProfile
 };
 

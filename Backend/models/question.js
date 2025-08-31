@@ -18,7 +18,17 @@ const questionSchema = new mongoose.Schema({
     type: [String],
     required: true,
     trim: true
-  }
+  },
+  level: {
+    type: Number,
+    required: true,
+    trim: true
+  },
+  timeLimit: {
+    type: Number,
+    required: true,
+    trim: true
+  },
 });
 
 
