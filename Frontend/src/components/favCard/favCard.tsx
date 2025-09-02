@@ -70,7 +70,7 @@ const FavCard = () => {
   return (
     <> 
         <div></div>
-        <div className="flex flex-wrap justify-evenly gap-10">
+        <div className="flex flex-wrap justify-evenly gap-10 mt-10">
           {myResults.map((result) => (
               <div className='card' key={result.kana + ', '+ result.englishword} >
                 {/* <p>{result.reading.kana}</p> */}

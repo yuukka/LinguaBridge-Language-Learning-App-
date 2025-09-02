@@ -121,7 +121,7 @@ const SignInForm = () => {
                     disabled={isFormInvalid()}>
                         Login
                     </Button>
-                    <Button variant="outline" className="w-full">
+                    <Button variant="outline" className="w-full rounded-full">
                         Login with Google
                     </Button>
                     </CardFooter>

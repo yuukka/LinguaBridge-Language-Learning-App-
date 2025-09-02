@@ -98,7 +98,7 @@ const updateBadge = async () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="rounded-full">Submit</Button>
+        <Button type="submit" className="rounded-full">Save</Button>
       </form>
     </Form>
   )
