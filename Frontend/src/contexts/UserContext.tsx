@@ -32,7 +32,7 @@ const getUserFromToken = (): User | null => {
   const decoded = JSON.parse(atob(token.split('.')[1])) as DecodedToken;
   return {
     ...decoded.payload,
-    level: decoded.payload.level || 1,   
+    level: decoded.payload.level || 0,   
   };
 };
 
@@ -57,7 +57,7 @@ function UserProvider({ children }: { children: ReactNode }) {
     if (!user) return; // safety check
 
     try {
-      await fetch(`${BACKEND_BASE_URL}/users/${user._id}/level`, {
+      const res = await fetch(`${BACKEND_BASE_URL}/users/${user._id}/level`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -65,9 +65,10 @@ function UserProvider({ children }: { children: ReactNode }) {
         },
         body: JSON.stringify({ level: newLevel }),
       });
-
+      
+      const updatedUser = await res.json();
       // Update context immediately
-      setUser(prev => prev ? { ...prev, level: newLevel } : null);
+      setUser(updatedUser);
     } catch (err) {
       console.error(err.message);
     }

@@ -18,6 +18,8 @@ import QuestMap from './components/QuizQuest/QuestMap';
 import Quest from './components/QuizQuest/Quest';
 import ProfileForm from './components/ProfileForm/ProfileForm';
 import Profile from './components/Profile/Profile';
+import Badge from './components/Badge/Badge'; 
+
 const App = () => {
   const { user } = useUser();
 
@@ -40,6 +42,7 @@ const App = () => {
         <Route path='/quiz/random' element={<QuickQuiz />}></Route>
         <Route path='/quiz/quest' element={user ? <QuestMap /> : <Landing /> }></Route>
         <Route path='/quiz/quest/:level' element={user ? <Quest /> : <Landing /> }></Route>
+        <Route path='/quiz/badges/' element={user ? <Badge /> : <Landing /> }></Route>
       </Routes>
     </div>
     </>

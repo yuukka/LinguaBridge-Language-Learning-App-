@@ -138,11 +138,13 @@ const SignUpForm = () => {
                     <div className='text-red-500/100'>{message}</div>
                     <Button 
                     type="submit" 
-                    className="w-full bg-neutral-700"
+                    className="w-full bg-neutral-700 rounded-full"
                     disabled={isFormInvalid()}>
                       Sign Up
                     </Button>
-                    <Button variant="outline" className="w-full rounded-full">
+                    <Button 
+                    variant="outline" 
+                    className="w-full rounded-full">
                       Sign Up with Google
                     </Button>
                   </CardFooter>

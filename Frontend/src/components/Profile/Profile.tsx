@@ -62,7 +62,6 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
 //   function onSubmit(values: z.infer<typeof formSchema>) {
     const updateProfile = await updateUserProfile(values);
     console.log(updateProfile)
-    console.log(values)
   }
 
 

@@ -46,9 +46,13 @@ const Menu = () => {
     { name: 'Game', description: 'Play Language game', href: '/quiz/random', icon: ChartPieIcon, children: [
         { name: 'Quick Quiz', href: '/quiz/random' },
         ...(user ? [{ name: 'Quest', href: '/quiz/quest' }] : []),
-        ...(user ? [{ name: 'Your Badges', href: '/quiz/bedges' }] : []),
+        ...(user ? [{ name: 'Your Badges', href: '/quiz/badges' }] : []),
       ] },
-    { name: 'Library', description: 'Your Japanese-English library', href: '/library', icon: CursorArrowRaysIcon },
+    // { name: 'Library', description: 'Your Japanese-English library', href: '/library', icon: CursorArrowRaysIcon },
+    { name: 'Library', description: 'Your Japanese-English library', href: '/library', icon: ChartPieIcon, children: [
+        { name: 'Search', href: '/library' },
+        ...(user ? [{ name: 'Saved Words', href: '/library/fav' }] : []),
+      ] },
   ]
 
   const handleSignOut = () => {
@@ -245,7 +249,7 @@ const Menu = () => {
               {user ?
                   <a
                     className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                    onClick={handleLogIn}
+                    onClick={handleSignOut}
                   >
                     Sign out
                   </a> : 
