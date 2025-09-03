@@ -26,42 +26,52 @@ import { getBadgeCollections } from '../../services/badgeService';
 
 import { useUser } from '../../contexts/UserContext';
 
+import { userProfile } from '../../services/userService';
+
 const Badge = () => {
 
     const { level } = useParams(); 
     
     const [message, setMessage] = useState('');
-    // const [userAnswer, setUserAnswer] = useState([]);
-    // const [questQuizs, setQuestQuizs] = useState([]);
-    // const [currentIndex, setCurrentIndex] = useState(0);
     const [badges, setBadges] = useState();
-    
-    // const navigate = useNavigate();
 
     const { user, updateUserLevel } = useUser();
+    const [userPro, setUserProfile] = useState();
 
+    const getProfile = async() => {
+        const getProf = await userProfile(user?._id);
+        setUserProfile(getProf);
+    };
 
-const getBadgeFunciton = async (level) => {
-    const requestType = 'GET';
-    try {
-        const badges = await getBadgeCollections(requestType, level)
-        console.log("Fetched badges:", badges);
-        setBadges(badges);
-    } catch (err) {
-        console.error("Unable to fetch badge:", err.message);
-        setMessage("Unable to save fetch badge:");        
-    }
+    const getBadgeFunciton = async (level) => {
+        const requestType = 'GET';
+        try {
+            const badges = await getBadgeCollections(requestType, level)
+            console.log("Fetched badges:", badges);
+            setBadges(badges);
+        } catch (err) {
+            console.error("Unable to fetch badge:", err.message);
+            setMessage("Unable to save fetch badge:");        
+        }
 
-};
+    };
 
     useEffect(() => {
-        const userLve = parseInt(user?.level)
-        getBadgeFunciton(userLve);
-    }, [user]); 
+        getProfile();
+    }, []);
 
     useEffect(() => {
 
-    }, [badges]); 
+        if (userPro?.user?.level !== undefined) {
+            getBadgeFunciton(userPro.user?.level);
+            // console.log(userPro.user.level);
+        }
+    }, [userPro]); 
+
+    useEffect(() => {
+    
+    // console.log(badges)
+    }, [badges]);
 
   return (
     <> 

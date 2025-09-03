@@ -32,10 +32,11 @@ const QuestMap = () => {
     const [levels, setLevels] = useState([]);        
     const [userPro, setUserProfile] = useState();
 
-    const getProfile = async() => {
-    const getProf = await userProfile(user?._id);
-    setUserProfile(getProf);
-    console.log(getProf);
+    const getProfile = async(user) => {
+        console.log(user?._id)
+        const getProf = await userProfile(user?._id);
+        setUserProfile(getProf);
+        console.log(getProf);
     };
 
     useEffect(() => {
@@ -43,13 +44,17 @@ const QuestMap = () => {
     }, [userPro]); 
 
     useEffect(() => {
-        getProfile();
-    }, []);
+        console.log(user?._id)
+        if (user !== undefined) {
+         getProfile(user);     
+        }
+
+    }, [user]);
 
     const navigate = useNavigate();
 
     const startQuest = (levelNum) => {
-        navigate(`/quiz/quest/${levelNum + 1}`);
+        navigate(`/quiz/quest/${levelNum}`);
     };
 
   return (
@@ -68,7 +73,7 @@ const QuestMap = () => {
         className={`p-4 rounded-lg text-white font-bold ${
             isUnlocked ? 'bg-blue-500/80' : 'bg-gray-400 cursor-not-allowed'
             }`}
-        onClick={() => startQuest(user?.level)}
+        onClick={() => startQuest(i + 1)}
         disabled={!isUnlocked}
         >
         Level {i+1}
