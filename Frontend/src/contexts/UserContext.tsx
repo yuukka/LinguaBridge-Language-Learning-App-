@@ -54,6 +54,7 @@ function UserProvider({ children }: { children: ReactNode }) {
     console.log(user)
     console.log(token)
     console.log({ level: newLevel })
+    console.log(user._id)
     if (!user) return; // safety check
 
     try {
@@ -68,7 +69,9 @@ function UserProvider({ children }: { children: ReactNode }) {
       
       const updatedUser = await res.json();
       // Update context immediately
-      setUser(updatedUser);
+      setUser(updatedUser.user);
+      console.log(updatedUser.user)
+      return updatedUser;
     } catch (err) {
       console.error(err.message);
     }

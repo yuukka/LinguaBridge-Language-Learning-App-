@@ -26,6 +26,8 @@ import { getBadge } from '../../services/badgeService';
 
 import { useUser } from '../../contexts/UserContext';
 
+import { userProfile } from '../../services/userService';
+
 const Quest = () => {
 //   const { keyword, results  } = useSearchResult();
   const { level } = useParams(); 
@@ -36,10 +38,17 @@ const Quest = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [levelBadge, setLevelBadge] = useState();
-  
+  const [userPro, setUserProfile] = useState();
+
   const navigate = useNavigate();
 
   const { user, updateUserLevel } = useUser();
+
+    const getProfile = async(user) => {
+        console.log(user?.id)
+        const getProf = await userProfile(user?._id);
+        setUserProfile(getProf);
+    };
 
   let getQuestQuizFunction = async () => {
     const requestType = 'GET';
@@ -94,8 +103,13 @@ const getBadgeFunciton = async () => {
 };
 
 const updateBadge = async () => {
-    const updateLevel = await updateUserLevel(user?.level + 1);
-    console.log(updateBadge)
+    if (!userPro?.user?._id) {
+        console.error("User profile not loaded yet!");
+        return;
+    }
+    console.log(userPro.user?.level + 1 )
+    const updateLevel = await updateUserLevel(userPro?.user?.level + 1);
+    console.log(updateLevel)
     navigate(`/quiz/quest`);
 };
 
@@ -118,8 +132,15 @@ const shuffle = (questions) => {
 };
 
     useEffect(() => {
-        console.log(user?.level +1)
-    }, []); 
+//    console.log(userPro)
+    }, [userPro]); 
+
+    useEffect(() => {
+        if (user !== undefined) {
+            getProfile(user);
+            console.log(user);
+        }
+    }, [user]); 
 
     useEffect(() => {
         console.log(questQuizs)
