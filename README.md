@@ -6,7 +6,7 @@ Mobile friendly Full Stack (MERN) app designed for younger children to learn Jap
 I built this app for my 6-year-old son, who loves memorizing Dragon Ball characters. It’s my first full-stack MERN project, combining fun learning with a bit of family motivation
 
 <img src="./Frontend/src/assets/Readme/point.png" alt="point" style="vertical-align: middle; width: 15px;"/>Click Goku to start learning:  
-<a href="https://yuukka.github.io/guess-the-word-game/"><img src="./Frontend/src/assets/Readme/Goku.webp" alt="goku" style="vertical-align: middle; width: 200px;"/></a>
+<a href="http://13.250.58.55"><img src="./Frontend/src/assets/Readme/Goku.webp" alt="goku" style="vertical-align: middle; width: 200px;"/></a>
  
 
 ## Screenshots 
