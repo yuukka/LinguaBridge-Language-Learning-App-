@@ -37,6 +37,7 @@ I built this app for my 6-year-old son, who loves memorizing Dragon Ball charact
 * **Mockup: Miro**
 
 **Other Resources:** 
+* **Dragon Ball API**
 * **Adobe Stock**
 * **Canva**
 * **w3schools**
